@@ -1,0 +1,7 @@
+﻿$PBExportHeader$emf_str_selection_group.srs
+global type emf_str_selection_group from structure
+	powerobject		po_obj
+	string		s_name
+	integer		ii_groupid
+end type
+
