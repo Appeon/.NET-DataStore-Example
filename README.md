@@ -66,7 +66,7 @@ The sample contains two projects:
    If your project is Appeon.DataStoreDemo.PostgreSQL:
 
    ```json
-   //Keep the database connection name as the default “AdventureWorks” or change it to a name //you prefer to use, and change the HOST, User ID, Password to the actual settings 
+   //Keep the database connection name as the default “AdventureWorks” or change it to a name you prefer to use, and change the HOST, User ID, Password to the actual settings 
    "ConnectionStrings": { "AdventureWorks":  "PORT=5432;DATABASE=AdventureWorks;HOST=127.0.0.1;PASSWORD=sa;USER ID=123456"  } 
    ```
 
