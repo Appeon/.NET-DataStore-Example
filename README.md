@@ -37,7 +37,7 @@ The sample contains two projects:
 
 3. In NuGet Package Manager window in SnapDevelop, make sure that Internet connection is available and the option "Include prerelease" is selected, so that the NuGet package can be restored.
 
-4. Download the database backup file from [https://github.com/Appeon/.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database) according to the database you are using, and restore the database using the downloaded database backup file.
+4. Download the database backup file from [.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database) according to the database you are using, and restore the database using the downloaded database backup file.
 
 5. In SnapDevelop (PB Edition), keep the C# project that works with the database you have installed, and remove the other C# projects. 
 
