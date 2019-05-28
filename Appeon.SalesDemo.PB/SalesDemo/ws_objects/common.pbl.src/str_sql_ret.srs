@@ -1,5 +1,0 @@
-﻿$PBExportHeader$str_sql_ret.srs
-global type str_sql_ret from structure
-	string		arm[]
-end type
-
