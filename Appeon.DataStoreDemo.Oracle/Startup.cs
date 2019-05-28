@@ -1,4 +1,4 @@
-﻿using SnapObjects.Data;
+using SnapObjects.Data;
 using SnapObjects.Data.AspNetCore;
 using PowerBuilder.Data.AspNetCore;
 using Appeon.DataStoreDemo.Oracle.Services;
