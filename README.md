@@ -23,10 +23,8 @@ The sample contains two projects:
 2. A PowerBuilder project. This project is a sales demo application. The project is structured as follows.
 
    ```
-   |—— Appeon.SalesDemo.PB			PB source code
-   	|—— salesdemo.pbt			PB target
-   	|—— Release					PB executable that can directly run
-   		|—— salesdemo.exe		PB c/s application
+   |—— .NET-DataStore-Example		
+   	|—— Appeon.SalesDemo.PB           			PowerBuilder project source code
    ```
 
 ##### Setting Up the Project
