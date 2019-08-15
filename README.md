@@ -20,7 +20,7 @@ The project is structured as follows.
 
 There is a ready-to-use example client application for you to test the Web APIs created from the project:
 
-- [PowerBuilder project](https://github.com/Appeon/PowerBuilder-RestClient-Example Repository). Download this PowerBuilder demo application, and use RESTClient in the application to call the Web APIs.
+- [PowerBuilder project](https://github.com/Appeon/PowerBuilder-RestClient-Example-Repository). Download this PowerBuilder demo application, and use RESTClient in the application to call the Web APIs.
 
 ##### Setting Up the Project
 
