@@ -22,6 +22,7 @@ namespace Appeon.DataStoreDemo.SqlAnyWhere.Services
             var productPhoto = new DataStore("d_productphoto", _context);
             productPhoto.AddRow();
             productPhoto.SetItem(0, "LargePhotoFileName", photoname);
+            productPhoto.SetItem(0, "ModifiedDate", DateTime.Now);
             var result = productPhoto.Update();
             if (result == 1)
             {

@@ -4,28 +4,23 @@ This C# project uses .NET DataStore from [PowerBuilder.Data](<https://www.nuget.
 
 ##### Sample Project Structure
 
-The sample contains two projects: 
+This is C# project. This project uses .NET DataStore from [PowerBuilder.Data](<https://www.nuget.org/packages/PowerBuilder.Data/>). 
 
-1. A C# project. This project uses .NET DataStore from [PowerBuilder.Data](<https://www.nuget.org/packages/PowerBuilder.Data/>). 
+Four different sets of project files are included, respectively for working with different databases (SQL Server, Oracle, SQL Anywhere, and PostgreSQL).
 
-   Four different sets of project files are included, respectively for working with different databases (SQL Server, Oracle, SQL Anywhere, and PostgreSQL).
+The project is structured as follows.
 
-   The project is structured as follows.
+```
+|—— .NET-DataStore-Example		Implemented with .NET DataStore from PowerBuilder.Data
+    |—— Appeon.DataStoreDemo.SqlServer       For working with SQL Server
+    |—— Appeon.DataStoreDemo.Oracle          For working with Oracle
+    |—— Appeon.DataStoreDemo.SqlAnywhere     For working with SQL Anywhere
+    |—— Appeon.DataStoreDemo.PostgreSQL      For working with PostgreSQL
+```
 
-   ```
-   |—— .NET-DataStore-Example		Implemented with .NET DataStore from PowerBuilder.Data
-       |—— Appeon.DataStoreDemo.SqlServer       For working with SQL Server
-       |—— Appeon.DataStoreDemo.Oracle          For working with Oracle
-       |—— Appeon.DataStoreDemo.SqlAnywhere     For working with SQL Anywhere
-       |—— Appeon.DataStoreDemo.PostgreSQL      For working with PostgreSQL
-   ```
+There is a ready-to-use example client application for you to test the Web APIs created from the project:
 
-2. A PowerBuilder project. This project is a sales demo application. The project is structured as follows.
-
-   ```
-   |—— .NET-DataStore-Example
-   	|—— Appeon.SalesDemo.PB				PowerBuilder project source code	
-   ```
+- [PowerBuilder project](https://github.com/Appeon/PowerBuilder-RestClient-Example Repository). Download this PowerBuilder demo application, and use RESTClient in the application to call the Web APIs.
 
 ##### Setting Up the Project
 
@@ -99,3 +94,4 @@ The sample contains two projects:
    //Note: Change "OrderContext" if you have changed the default DataContext file name; change the "AdventureWorks" if you have changed the database connection name in appsettings.json
    services.AddDataContext<OrderContext>(m => m.UsePostgreSql(Configuration["ConnectionStrings:AdventureWorks"])); 
    ```
+
