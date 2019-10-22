@@ -1,4 +1,4 @@
-﻿using PowerBuilder.Data;
+﻿using DWNet.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services
@@ -74,13 +74,13 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
             if (autoCommit)
             {
                 _context.BeginTransaction();
-                dataStore.SetDataContext(_context);
+                dataStore.DataContext = _context;
                 dataStore.Update();
                 _context.Commit();
             }
             else
             {
-                dataStore.SetDataContext(_context);
+                dataStore.DataContext = _context;
                 dataStore.Update();
             }
 

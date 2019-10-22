@@ -1,5 +1,5 @@
 ﻿using SnapObjects.Data;
-using PowerBuilder.Data;
+using DWNet.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services
@@ -35,14 +35,14 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
 
             _context.BeginTransaction();
                 
-            salesOrderHeaders.SetDataContext(_context);
+            salesOrderHeaders.DataContext = _context;
             salesOrderHeaders.Update();
 
             intSalesOrderId = salesOrderHeaders.GetItem<int>(0, "salesorderid");
 
             SetPrimaryKey(salesOrderHeaders, salesOrderDetails);
 
-            salesOrderDetails.SetDataContext(_context);
+            salesOrderDetails.DataContext = _context;
             salesOrderDetails.Update();
 
             _context.Commit();

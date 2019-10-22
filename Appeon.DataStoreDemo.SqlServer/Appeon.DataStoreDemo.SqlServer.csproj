@@ -9,16 +9,15 @@
     <Content Remove="DataStoreDemo.pbw\**" />
     <EmbeddedResource Remove="DataStoreDemo.pbw\**" />
     <None Remove="DataStoreDemo.pbw\**" />
+    <None Update="salesdemo.pbw\salesdemo.pbt\person.pbl\d_dddw_email.tpl.d_dddw_email.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Version="2.0.0" Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="PowerBuilder.Data" Version="1.0.1" />
-    <PackageReference Include="PowerBuilder.Data.AspNetCore" Version="1.0.1" />
-    <PackageReference Include="SnapObjects.Data" Version="1.0.1" />
-    <PackageReference Include="SnapObjects.Data.AspNetCore" Version="1.0.1" />
-    <PackageReference Include="SnapObjects.Data.SqlServer" Version="1.0.1" />
+    <PackageReference Include="DWNet.Data" Version="2.0.0-beta" />
+    <PackageReference Include="DWNet.Data.AspNetCore" Version="2.0.0-beta" />
+    <PackageReference Include="SnapObjects.Data" Version="2.0.0-beta" />
+    <PackageReference Include="SnapObjects.Data.SqlServer" Version="2.0.0-beta" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Datastoredemo\Datastoredemo\Person\D_Address.cs">

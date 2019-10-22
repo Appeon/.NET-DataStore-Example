@@ -1,5 +1,5 @@
 ﻿using SnapObjects.Data;
-using PowerBuilder.Data;
+using DWNet.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services
@@ -60,16 +60,16 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
             SetPrimaryKey(person, addresses, phones, customers);
 
             //Save person address, phone, customer
-            person.SetDataContext(_context);
+            person.DataContext = _context;
             person.Update();
 
-            addresses.SetDataContext(_context);
+            addresses.DataContext = _context;
             addresses.Update();
 
-            phones.SetDataContext(_context);
+            phones.DataContext = _context;
             phones.Update();
 
-            customers.SetDataContext(_context);
+            customers.DataContext = _context;
             customers.Update();
 
             _context.Commit();

@@ -1,5 +1,5 @@
 ﻿using SnapObjects.Data;
-using PowerBuilder.Data;
+using DWNet.Data;
 using Appeon.DataStoreDemo.SqlServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,6 +38,24 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             packer.AddDataStore("SubCategory", subCategory, true);
 
             return packer;
+        }
+
+        // GET api/Person/RetrievePerson
+        // Use compress
+        [HttpGet("{personType}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<string> RetrievePerson_Compress(string personType)
+        {
+
+            var personData = _reportService.Retrieve("d_person_list_compress", personType);
+
+            if (personData.RowCount == 0)
+            {
+                return NotFound();
+            }
+
+            var json = personData.ExportPlainJson(false);
+            return json;
         }
 
         // GET api/OrderReport/CategorySalesReport

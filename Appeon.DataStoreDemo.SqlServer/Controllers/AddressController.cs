@@ -1,5 +1,5 @@
 ﻿using SnapObjects.Data;
-using PowerBuilder.Data;
+using DWNet.Data;
 using Appeon.DataStoreDemo.SqlServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -44,7 +44,14 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         {
             var packer = new DataPacker();
 
-            if (city == "$") city = "%";
+            if (city == "$")
+            {
+                city = "%";
+            }
+            else
+            {
+                city = "%" + city + "%";
+            }
 
             var addressData = _addressService.Retrieve("d_address", provinceId, city);
 
@@ -58,6 +65,26 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             return packer;
         }
 
+        // GET api/Address/RetrieveAddress
+        // Use compress
+        [HttpGet("{provinceId}/{city}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<string> RetrieveAddress_Compress(int provinceId, string city)
+        {
+            var packer = new DataPacker();
+            
+
+            var addressData = _addressService.Retrieve("d_address", provinceId, city);
+
+            if (addressData.RowCount == 0)
+            {
+                return NotFound();
+            }
+
+            var json = addressData.ExportPlainJson(false);
+            return json;
+        }
+
         // POST api/Address/SaveChanges
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -67,8 +94,8 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
 
             var packer = new DataPacker();
 
-            var detail = unpacker.GetDataStore("dw1");
-            
+            var detail = new DataStore("d_address_free");
+            detail.ImportJson(unpacker.Raw);
             try
             {
                 status = _addressService.Update(detail);

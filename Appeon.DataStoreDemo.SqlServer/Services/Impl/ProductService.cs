@@ -1,5 +1,5 @@
 ﻿using SnapObjects.Data;
-using PowerBuilder.Data;
+using DWNet.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services
@@ -69,11 +69,13 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
                        and (ProductProductPhoto.[Primary] = 1)
                        Order By ProductPhoto.ModifiedDate desc";
 
-            var result = _context.SqlExecutor.SelectToStore<DynamicModel>(sql, productId);
+            var result = _context.SqlExecutor.Select<DynamicModel>(sql, productId);
+
             if (result.Count == 1)
             {
-                photoname = result.GetValue<string>(0, "LargePhotoFileName");
-                photo = result.GetValue<byte[]>(0, "LargePhoto");
+                var data = result[0];
+                photoname = data.GetValue<string>("LargePhotoFileName");
+                photo = data.GetValue<byte[]>("LargePhoto");
 
                 return true;
             }
@@ -93,19 +95,19 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
 
             _context.BeginTransaction();
 
-            subcate.SetDataContext(_context);
+            subcate.DataContext = _context;
             subcate.Update();
 
             intSubCateId = subcate.GetItem<int>(0, "productsubcategoryid");
 
             SetProductPrimaryKey(subcate, product);
-            product.SetDataContext(_context);
+            product.DataContext = _context;
             product.Update();
 
             intProductId = product.GetItem<int>(0, "productid");
 
             SetPricePrimaryKey(product, prices);
-            prices.SetDataContext(_context);
+            prices.DataContext = _context;
             prices.Update();
 
             _context.Commit();
@@ -119,13 +121,13 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
 
             _context.BeginTransaction();
 
-            product.SetDataContext(_context);
+            product.DataContext = _context;
             product.Update();
 
             intProductId = product.GetItem<int>(0, "productid");
 
             SetPricePrimaryKey(product, prices);
-            prices.SetDataContext(_context);
+            prices.DataContext = _context;
             prices.Update();
 
             _context.Commit();
