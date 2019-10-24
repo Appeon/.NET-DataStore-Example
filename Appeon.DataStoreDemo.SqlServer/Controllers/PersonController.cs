@@ -202,7 +202,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                         var personNumber = unpacker.GetValue<string>("arm3");
                         var phonenumbertypeid = unpacker.GetValue<int>("arm4");
                         status = _personService.Delete("d_personphone", true,
-                            "Phonenumber = " + personNumber.ToString() + " And " +
+                            "Phonenumber = '" + personNumber.ToString() + "' And " +
                             "Phonenumbertypeid = " + phonenumbertypeid.ToString(),
                             personId);
 
