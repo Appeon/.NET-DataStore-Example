@@ -14,10 +14,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DWNet.Data" Version="2.0.0-beta" />
-    <PackageReference Include="DWNet.Data.AspNetCore" Version="2.0.0-beta" />
-    <PackageReference Include="SnapObjects.Data" Version="2.0.0-beta" />
-    <PackageReference Include="SnapObjects.Data.SqlServer" Version="2.0.0-beta" />
+    <PackageReference Include="DWNet.Data" Version="2.0.0-beta2" />
+    <PackageReference Include="DWNet.Data.AspNetCore" Version="2.0.0-beta2" />
+    <PackageReference Include="SnapObjects.Data" Version="2.0.0-beta2" />
+    <PackageReference Include="SnapObjects.Data.SqlServer" Version="2.0.0-beta2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Datastoredemo\Datastoredemo\Person\D_Address.cs">
