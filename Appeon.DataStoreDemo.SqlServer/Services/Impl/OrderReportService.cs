@@ -25,6 +25,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
 
             var dataStore = new DataStore("d_subcategorysalesreport");
             dataStore.AddRow();
+            bool getName = false;
 
             if (OrderReportMonth1.RowCount > 0)
             {
@@ -32,37 +33,64 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
 
                 dataStore.SetItem(0, "salesqtymonth1", OrderReportMonth1.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth1", OrderReportMonth1.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
+                getName = true;
             }
 
             if (OrderReportMonth2.RowCount > 0)
             {
+                if (!getName)
+                {
+                    dataStore.SetItem(0, "name", OrderReportMonth2.GetItem<string>(0, "subcategoryname"));
+                    getName = true;
+                }
                 dataStore.SetItem(0, "salesqtymonth2", OrderReportMonth2.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth2", OrderReportMonth2.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
             }
 
             if (OrderReportMonth3.RowCount > 0)
             {
+                if (!getName)
+                {
+                    dataStore.SetItem(0, "name", OrderReportMonth3.GetItem<string>(0, "subcategoryname"));
+                    getName = true;
+                }
                 dataStore.SetItem(0, "salesqtymonth3", OrderReportMonth3.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth3", OrderReportMonth3.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
             }
 
             if (OrderReportMonth4.RowCount > 0)
             {
+                if (!getName)
+                {
+                    dataStore.SetItem(0, "name", OrderReportMonth4.GetItem<string>(0, "subcategoryname"));
+                    getName = true;
+                }
                 dataStore.SetItem(0, "salesqtymonth4", OrderReportMonth4.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth4", OrderReportMonth4.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
             }
 
             if (OrderReportMonth5.RowCount > 0)
             {
+                if (!getName)
+                {
+                    dataStore.SetItem(0, "name", OrderReportMonth5.GetItem<string>(0, "subcategoryname"));
+                    getName = true;
+                }
                 dataStore.SetItem(0, "salesqtymonth5", OrderReportMonth5.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth5", OrderReportMonth5.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
             }
 
             if (OrderReportMonth6.RowCount > 0)
             {
+                if (!getName)
+                {
+                    dataStore.SetItem(0, "name", OrderReportMonth6.GetItem<string>(0, "subcategoryname"));
+                    getName = true;
+                }
                 dataStore.SetItem(0, "salesqtymonth6", OrderReportMonth6.GetItem<int?>(0, "totalsalesqty") ?? 0);
                 dataStore.SetItem(0, "salesroommonth6", OrderReportMonth6.GetItem<decimal?>(0, "totalsaleroom") ?? 0);
             }
+
 
             return dataStore;
         }
