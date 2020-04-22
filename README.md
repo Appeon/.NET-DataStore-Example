@@ -1,4 +1,4 @@
-﻿# <b>NET DataStore Example</b>
+﻿# <b>.NET DataStore Example</b>
 
 This C# project uses .NET DataStore from [DWNet.Data](<https://www.nuget.org/packages/DWNet.Data/>) for creating Web APIs.  It makes use of the latest released Appeon PowerBuilder 2019 R2 and SnapDevelop 2019 R2, and shows how CRUD operations and transaction management works in .NET DataStore.
 
