@@ -1,6 +1,6 @@
 ﻿# <b>.NET DataStore Example</b>
 
-This C# project uses .NET DataStore from [DWNet.Data](<https://www.nuget.org/packages/DWNet.Data/>) for creating Web APIs.  It makes use of the latest released Appeon PowerBuilder 2019 R2 and SnapDevelop 2019 R2, and shows how CRUD operations and transaction management works in .NET DataStore.
+This C# project uses .NET DataStore from [DWNet.Data](<https://www.nuget.org/packages/DWNet.Data/>) for creating Web APIs.  With the latest version (2019 R3) of Appeon PowerBuilder and SnapDevelop, the project targets .NET Core 3.1, and implements CRUD operations and transaction management by .NET DataStore. Currently, this demo is implemented using synchronous methods, and we will try asynchronous methods in the future.
 
 ##### Sample Project Structure
 
@@ -21,9 +21,9 @@ There is a ready-to-use example client application for you to test the Web APIs 
 
 ##### Setting Up the Project
 
-1. Open the PowerBuilder project in PowerBuilder 2019 R2.
+1. Open the PowerBuilder project in PowerBuilder 2019 R3.
 
-2. Open the C# project in SnapDevelop 2019 R2. 
+2. Open the C# project in SnapDevelop 2019 R3. 
 
 3. In NuGet Package Manager window in SnapDevelop, make sure that Internet connection is available and the option "Include prerelease" is selected, so that the NuGet package can be restored.
 
@@ -33,13 +33,13 @@ There is a ready-to-use example client application for you to test the Web APIs 
 
    ```json
    //Keep the database connection name as the default “AdventureWorks” or change it to a name you prefer to use, and change the Data Source, User ID, Password and Initial Catalog according to the actual settings
-   "ConnectionStrings": { "AdventureWorks": "Data Source=127.0.0.1; Initial Catalog=AdventureWorks; Integrated Security=False; User ID=sa; Password=123456; Pooling=True; Min Pool Size=0; Max Pool Size=100; ApplicationIntent=ReadWrite" } 
+   "ConnectionStrings": { "AdventureWorks": "Data Source=127.0.0.1; Initial Catalog=AdventureWorks; Integrated Security=False; User ID=sa; Password=123456; Pooling=True; Min Pool Size=0; Max Pool Size=100; ApplicationIntent=ReadWrite" }
    ```
 
 6. In the ConfigureServices method of *Startup.cs*, go to the following line, and make sure the ConnectionString name is the same as the database connection name specified in step #5.
 
    ```C#
    //Note: Change "OrderContext" if you have changed the default DataContext file name; change the "AdventureWorks" if you have changed the database connection name in appsettings.json 
-   services.AddDataContext<OrderContext>(m => m.UseSqlServer(Configuration["ConnectionStrings:AdventureWorks"])); 
+   services.AddDataContext<OrderContext>(m => m.UseSqlServer(Configuration, "AdventureWorks"));  
    ```
 

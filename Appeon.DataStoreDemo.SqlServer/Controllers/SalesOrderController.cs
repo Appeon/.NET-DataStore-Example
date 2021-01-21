@@ -1,9 +1,9 @@
-﻿using SnapObjects.Data;
+﻿using Appeon.DataStoreDemo.SqlServer.Services;
 using DWNet.Data;
-using Appeon.DataStoreDemo.SqlServer.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SnapObjects.Data;
+using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Controllers
 {
@@ -27,15 +27,15 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
 
             try
             {
-                packer.AddDataStore("Customer", 
+                packer.AddDataStore("Customer",
                 _saleService.Retrieve("d_dddw_customer_individual"));
-                packer.AddDataStore("SalesPerson", 
+                packer.AddDataStore("SalesPerson",
                     _saleService.Retrieve("d_dddw_salesperson"));
-                packer.AddDataStore("SalesTerritory", 
+                packer.AddDataStore("SalesTerritory",
                     _saleService.Retrieve("d_dddw_salesterritory"));
-                packer.AddDataStore("ShipMethod", 
+                packer.AddDataStore("ShipMethod",
                     _saleService.Retrieve("d_dddw_shipmethod"));
-                packer.AddDataStore("OrderProduct", 
+                packer.AddDataStore("OrderProduct",
                     _saleService.Retrieve("d_dddw_order_production"));
             }
             catch (Exception e)
@@ -58,8 +58,8 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
 
             try
             {
-                packer.AddDataStore("SalesOrderHeader", 
-                    _saleService.Retrieve("d_order_header_grid", 
+                packer.AddDataStore("SalesOrderHeader",
+                    _saleService.Retrieve("d_order_header_grid",
                     fromDate, toDate, customerId));
             }
             catch (Exception e)
@@ -109,9 +109,9 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                 switch (modelName)
                 {
                     case "Customer":
-                        packer.AddDataStore("DddwAddress", 
+                        packer.AddDataStore("DddwAddress",
                             _saleService.Retrieve("d_dddw_customer_address", CodeId));
-                        packer.AddDataStore("DddwCreditcard", 
+                        packer.AddDataStore("DddwCreditcard",
                             _saleService.Retrieve("d_dddw_customer_creditcard", CodeId));
                         break;
                 }
@@ -135,14 +135,14 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
 
             try
             {
-                var saleOrderId = _saleService.SaveSalesOrderAndDetail(orderHeader, 
+                var saleOrderId = _saleService.SaveSalesOrderAndDetail(orderHeader,
                     orderDetail);
 
                 if (saleOrderId > 0)
                 {
-                    packer.AddDataStore("SalesOrderHeader", 
+                    packer.AddDataStore("SalesOrderHeader",
                         _saleService.Retrieve("d_order_header_free", saleOrderId));
-                    packer.AddDataStore("SalesOrderHeader.SalesOrderDetail", 
+                    packer.AddDataStore("SalesOrderHeader.SalesOrderDetail",
                         _saleService.Retrieve("d_order_detail_list", saleOrderId));
                 }
                 packer.AddValue("Status", "Success");
@@ -160,7 +160,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IDataPacker> SaveChanges(IDataUnpacker unpacker)
         {
-            string status = "Success";
+            var status = "Success";
             var packer = new DataPacker();
             var modelname = unpacker.GetValue<string>("arm1");
 

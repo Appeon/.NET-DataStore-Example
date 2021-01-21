@@ -5,7 +5,7 @@ namespace Appeon.DataStoreDemo.SqlServer
 {
     public class OrderContext : SqlServerDataContext
     {
-        
+
         public OrderContext(string connectionString)
             : this(new SqlServerDataContextOptions<OrderContext>(connectionString))
         {

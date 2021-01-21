@@ -1,9 +1,9 @@
-﻿using SnapObjects.Data;
+﻿using Appeon.DataStoreDemo.SqlServer.Services;
 using DWNet.Data;
-using Appeon.DataStoreDemo.SqlServer.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SnapObjects.Data;
+using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Controllers
 {
@@ -24,7 +24,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         public ActionResult<IDataPacker> WinOpen()
         {
             var packer = new DataPacker();
-            int cateId = 0;
+            var cateId = 0;
 
             var category = _reportService.Retrieve("d_dddw_category");
             var subCategory = _reportService.Retrieve("d_subcategory", cateId);
@@ -33,7 +33,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             {
                 return NotFound();
             }
-            
+
             packer.AddDataStore("Category", category);
             packer.AddDataStore("SubCategory", subCategory, true);
 
@@ -46,7 +46,6 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<string> RetrievePerson_Compress(string personType)
         {
-
             var personData = _reportService.Retrieve("d_person_list_compress", personType);
 
             if (personData.RowCount == 0)
@@ -55,6 +54,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             }
 
             var json = personData.ExportPlainJson(false);
+
             return json;
         }
 
@@ -65,14 +65,14 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             string queryFrom, string queryTo)
         {
             var packer = new DataPacker();
-            
+
             var dataFrom = DateTime.Parse(queryFrom);
             var dataTo = DateTime.Parse(queryTo);
             var lastDataFrom = DateTime.Parse(queryFrom).AddYears(-1);
             var lastDataTo = DateTime.Parse(queryTo).AddYears(-1);
 
-            var CategoryReport = _reportService.Retrieve("d_categorysalesreport_d", 
-                dataFrom, dataTo);
+            var CategoryReport = _reportService.Retrieve(
+                "d_categorysalesreport_d", dataFrom, dataTo);
 
             if (CategoryReport.RowCount == 0)
             {
@@ -82,7 +82,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             packer.AddDataStore("Category.SalesReport", CategoryReport);
 
             packer.AddDataStore("Category.LastYearSalesReport",
-                _reportService.Retrieve("d_categorysalesreport_d", 
+                _reportService.Retrieve("d_categorysalesreport_d",
                 lastDataFrom, lastDataTo));
 
             return packer;
@@ -96,22 +96,23 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         {
             var packer = new DataPacker();
 
-            var fromDate = DateTime.Parse(halfYear == "first" ? 
+            var fromDate = DateTime.Parse(halfYear == "first" ?
                 salesYear + "-01-01" : salesYear + "-07-01");
-            var toDate = DateTime.Parse(halfYear == "first" ? 
+            var toDate = DateTime.Parse(halfYear == "first" ?
                 salesYear + "-06-30" : salesYear + "-12-31");
-            object[] yearMonth = new object[7];
+            var yearMonth = new object[7];
 
             yearMonth[0] = subCategoryId;
+
             for (int month = 1; month < 7; month++)
             {
-                yearMonth[month] = halfYear == "first" ? 
-                    salesYear + string.Format("{0:00}", month) 
+                yearMonth[month] = halfYear == "first" ?
+                    salesYear + string.Format("{0:00}", month)
                     : salesYear + string.Format("{0:00}", (month + 6));
             }
 
             var SalesReport = _reportService.RetrieveSubCategorySalesReport(yearMonth);
-            var ProductReport = _reportService.Retrieve("d_productsalesreport", 
+            var ProductReport = _reportService.Retrieve("d_productsalesreport",
                 subCategoryId, fromDate, toDate);
 
             if (ProductReport.RowCount == 0)

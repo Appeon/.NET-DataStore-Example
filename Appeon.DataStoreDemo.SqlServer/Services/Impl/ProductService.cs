@@ -1,5 +1,5 @@
-﻿using SnapObjects.Data;
-using DWNet.Data;
+﻿using DWNet.Data;
+using SnapObjects.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services

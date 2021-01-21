@@ -1,5 +1,5 @@
-﻿using SnapObjects.Data;
-using DWNet.Data;
+﻿using DWNet.Data;
+using SnapObjects.Data;
 using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Services
@@ -31,14 +31,14 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
             return status;
         }
 
-        public int SavePerson(IDataStore person, IDataStore addresses, 
+        public int SavePerson(IDataStore person, IDataStore addresses,
             IDataStore phones, IDataStore customers)
         {
             int intPersonId = 0;
 
             _context.BeginTransaction();
 
-            if ((person.ModifiedCount == 1) && 
+            if ((person.ModifiedCount == 1) &&
                 person.GetRowStatus(0) == ModelState.NewModified)
             {
                 var businessEntity = new DataStore("d_businessentity", _context);
@@ -77,7 +77,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Services
             return intPersonId;
         }
 
-        private void SetPrimaryKey(IDataStore person, IDataStore addresses, 
+        private void SetPrimaryKey(IDataStore person, IDataStore addresses,
             IDataStore phones, IDataStore customers)
         {
             if (person.DeletedCount == 0 && person.RowCount > 0)

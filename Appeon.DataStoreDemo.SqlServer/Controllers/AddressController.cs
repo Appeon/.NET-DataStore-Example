@@ -1,9 +1,9 @@
-﻿using SnapObjects.Data;
+﻿using Appeon.DataStoreDemo.SqlServer.Services;
 using DWNet.Data;
-using Appeon.DataStoreDemo.SqlServer.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SnapObjects.Data;
+using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Controllers
 {
@@ -71,9 +71,6 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<string> RetrieveAddress_Compress(int provinceId, string city)
         {
-            var packer = new DataPacker();
-            
-
             var addressData = _addressService.Retrieve("d_address", provinceId, city);
 
             if (addressData.RowCount == 0)
@@ -82,6 +79,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             }
 
             var json = addressData.ExportPlainJson(false);
+
             return json;
         }
 
@@ -90,12 +88,13 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IDataPacker> SaveChanges(IDataUnpacker unpacker)
         {
-            string status = String.Empty;
+            var status = string.Empty;
 
             var packer = new DataPacker();
 
             var detail = new DataStore("d_address_free");
             detail.ImportJson(unpacker.Raw);
+
             try
             {
                 status = _addressService.Update(detail);
@@ -116,7 +115,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<IDataPacker> DeleteAddressByKey(IDataUnpacker unpacker)
         {
-            string status = String.Empty;
+            var status = string.Empty;
 
             var packer = new DataPacker();
             var addressId = unpacker.GetValue<int>("arm1");

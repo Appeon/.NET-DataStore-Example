@@ -1,13 +1,12 @@
-﻿using SnapObjects.Data;
+﻿using Appeon.DataStoreDemo.SqlServer.Services;
 using DWNet.Data;
-using Appeon.DataStoreDemo.SqlServer.Services;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SnapObjects.Data;
+using System;
 
 namespace Appeon.DataStoreDemo.SqlServer.Controllers
 {
-
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class PersonController : ControllerBase
@@ -37,8 +36,8 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                 packer.AddDataStore("CustomerTerritory",
                     _personService.Retrieve("d_dddw_territory"));
                 packer.AddDataStore("Store",
-                    _personService.Retrieve("d_dddw_store"));  
-                packer.AddDataStore("Person", 
+                    _personService.Retrieve("d_dddw_store"));
+                packer.AddDataStore("Person",
                     _personService.Retrieve("d_person_list", "IN"));
             }
             catch (Exception e)
@@ -55,6 +54,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         public ActionResult<IDataPacker> RetrievePersonByKey(int personId)
         {
             var packer = new DataPacker();
+
             try
             {
                 packer.AddDataStore("Person",
@@ -88,18 +88,18 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                 var personPhone = unpacker.GetDataStore("dw3", "d_personphone");
                 var customer = unpacker.GetDataStore("dw4", "d_customer");
 
-                var personId = _personService.SavePerson(person, personAddress, 
+                var personId = _personService.SavePerson(person, personAddress,
                     personPhone, customer);
 
                 if (personId > 0)
                 {
-                    packer.AddDataStore("Person", 
+                    packer.AddDataStore("Person",
                         _personService.Retrieve("d_person", personId));
-                    packer.AddDataStore("Person.PersonAddress", 
+                    packer.AddDataStore("Person.PersonAddress",
                         _personService.Retrieve("d_businessentityaddress", personId));
-                    packer.AddDataStore("Person.PersonPhone", 
+                    packer.AddDataStore("Person.PersonPhone",
                         _personService.Retrieve("d_personphone", personId));
-                    packer.AddDataStore("Person.Customer", 
+                    packer.AddDataStore("Person.Customer",
                         _personService.Retrieve("d_customer", personId));
                 }
                 packer.AddValue("Status", "Success");
@@ -147,16 +147,16 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                     intPersonId = customer.GetItem<int?>(0, "personid");
 
                 }
-            
+
                 if (status == "Success")
                 {
-                    packer.AddDataStore("Person", 
+                    packer.AddDataStore("Person",
                         _personService.Retrieve("d_person", intPersonId));
-                    packer.AddDataStore("Person.PersonAddress", 
+                    packer.AddDataStore("Person.PersonAddress",
                         _personService.Retrieve("d_businessentityaddress", intPersonId));
-                    packer.AddDataStore("Person.PersonPhone", 
+                    packer.AddDataStore("Person.PersonPhone",
                         _personService.Retrieve("d_personphone", intPersonId));
-                    packer.AddDataStore("Person.Customer", 
+                    packer.AddDataStore("Person.Customer",
                         _personService.Retrieve("d_customer", intPersonId));
                 }
 

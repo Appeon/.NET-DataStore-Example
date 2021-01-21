@@ -1,13 +1,12 @@
 ﻿using Appeon.DataStoreDemo.SqlServer.Services;
+using DWNet.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SnapObjects.Data;
 using System;
-using DWNet.Data;
 
 namespace Appeon.DataStoreDemo.SqlServer.Controllers
 {
-
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -23,10 +22,9 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<string> Start()
-        {
-           return "HTTP status code = 200 \r\n" +
+            => "HTTP status code = 200 \r\n" +
                 "The request has succeeded.";
-        }
+
 
         // GET api/product/WinOpen
         [HttpGet]
@@ -34,18 +32,18 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
         public ActionResult<IDataPacker> WinOpen()
         {
             var packer = new DataPacker();
-            int intCateId = 0;
+            var intCateId = 0;
 
             var productCate = _productService.Retrieve("d_dddw_category");
 
             if (productCate.RowCount > 0)
             {
                 intCateId = productCate.GetItem<int>(0, "productcategoryid");
-            }      
+            }
 
             packer.AddValue("CateId", intCateId.ToString());
             packer.AddDataStore("Category", productCate);
-            packer.AddDataStore("SubCategory", 
+            packer.AddDataStore("SubCategory",
                 _productService.Retrieve("d_subcategory_list", intCateId), true);
             packer.AddDataStore("Units", _productService.Retrieve("d_dddw_unit"));
 
@@ -64,27 +62,27 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
                 switch (dwname)
                 {
                     case "d_subcategory":
-                        packer.AddDataStore("SubCategory", 
+                        packer.AddDataStore("SubCategory",
                             _productService.Retrieve("d_subcategory_list", id), true);
 
                         break;
 
                     case "d_product":
-                        packer.AddDataStore("Product", 
+                        packer.AddDataStore("Product",
                             _productService.Retrieve("d_product", id));
 
-                        packer.AddDataStore("dddwSubCategory", 
+                        packer.AddDataStore("dddwSubCategory",
                             _productService.Retrieve("d_subcategory_list", id));
 
                         break;
 
                     case "d_history_price":
-                        packer.AddDataStore("HistoryPrice", 
+                        packer.AddDataStore("HistoryPrice",
                             _productService.Retrieve("d_history_price", id));
-                        packer.AddDataStore("dddwProduct", 
+                        packer.AddDataStore("dddwProduct",
                             _productService.Retrieve("d_dddw_product"));
 
-                        if (_productService.retrieveProductPhote(id, out string photoname, 
+                        if (_productService.retrieveProductPhote(id, out string photoname,
                             out byte[] largePhoto))
                         {
                             packer.AddValue("photo", largePhoto);
@@ -117,7 +115,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             var productId = unpacker.GetValue<int>("arm1");
             var photoName = unpacker.GetValue<string>("arm2");
             var productPhoto = unpacker.GetValue<string>("arm3");
-            byte[] bProductPhoto = Convert.FromBase64String(productPhoto);
+            var bProductPhoto = Convert.FromBase64String(productPhoto);
 
             try
             {
@@ -145,10 +143,10 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             try
             {
                 var productId = _productService.SaveProductAndPrice(product, prices);
-                
-                packer.AddDataStore("Product", 
+
+                packer.AddDataStore("Product",
                     _productService.Retrieve("d_product_detail", productId));
-                packer.AddDataStore("Product.HistoryPrice", 
+                packer.AddDataStore("Product.HistoryPrice",
                     _productService.Retrieve("d_history_price", productId));
 
                 packer.AddValue("Status", "Success");
@@ -156,7 +154,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }            
+            }
 
             return packer;
         }
@@ -171,6 +169,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             var subcate = unpacker.GetDataStore("dw1", "d_subcategory_list");
             var product = unpacker.GetDataStore("dw2", "d_product");
             var prices = unpacker.GetDataStore("dw3", "d_history_price");
+
             try
             {
 
@@ -184,7 +183,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
             catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }           
+            }
 
             return packer;
         }
@@ -245,7 +244,7 @@ namespace Appeon.DataStoreDemo.SqlServer.Controllers
 
             var status = "Success";
             var modelname = unpacker.GetValue<string>("arm1");
-            
+
             try
             {
                 switch (modelname)
