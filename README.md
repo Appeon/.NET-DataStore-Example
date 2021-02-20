@@ -1,7 +1,7 @@
 ﻿# <b>.NET DataStore Example</b>
 
 This demo project targets .NET Core 3.1, and uses .NET DataStore to create the Web APIs that allow you to perform CRUD operations and transaction management with SQL Server. This demo also provides a PowerBuilder project that you can [download](https://github.com/Appeon/PowerBuilder-RestClient-Example) and use as a client application to call the Web APIs.   
-Note that this demo is implemented using synchronous methods. Asynchronous methods are planned for a future update.
+Note that this demo implements the Web APIs with synchronous methods. Asynchronous methods are planned for a future release.
 
 #### Prerequisites
 *   SnapDevelop 2019 R3     
