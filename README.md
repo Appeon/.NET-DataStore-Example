@@ -11,7 +11,9 @@ Note that this demo is implemented using synchronous methods. Asynchronous metho
 #### Setting Up this Demo
 
 1.	Download the SQL Server backup file AdventureWorks_for_sqlserver.zip from [.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database), and restore the database using the backup file.
+
 2.	Download and open this demo in SnapDevelop. Make sure you’re connected to the Internet so that the NuGet packages required by the project can be restored.
+
 3.	In the **Solution Explorer**, open the file *appsettings.json*, and modify the Data Source, Initial Catalog, User ID, and Password in the connection string based on your enviorment. Note that the value of the Initial Catalog must be the same as the name of database (AdventureWorks2012 by default) you restored in the SQL Server.
 
 
