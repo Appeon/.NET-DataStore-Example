@@ -8,7 +8,7 @@ Note that this demo is implemented using synchronous methods. Asynchronous metho
 *   PowerBuidler 2019 R3    
 *   SQL Server 2019, 2017, or 2016  
 
-#### Setting Up this Demo
+#### Setting Up This Demo
 
 1.	Download the SQL Server backup file *AdventureWorks_for_sqlserver.zip* from [.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database), and restore the database using the backup file.
 
