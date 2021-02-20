@@ -10,7 +10,7 @@ Note that this demo is implemented using synchronous methods. Asynchronous metho
 
 #### Setting Up this Demo
 
-1.	Download the SQL Server backup file AdventureWorks_for_sqlserver.zip from [.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database), and restore the database using the backup file.
+1.	Download the SQL Server backup file *AdventureWorks_for_sqlserver.zip* from [.NET-Project-Example-Database](https://github.com/Appeon/.NET-Project-Example-Database), and restore the database using the backup file.
 
 2.	Download and open this demo in SnapDevelop. Make sure you’re connected to the Internet so that the NuGet packages required by the project can be restored.
 
