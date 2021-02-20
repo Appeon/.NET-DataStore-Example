@@ -23,7 +23,6 @@ Note that this demo is implemented using synchronous methods. Asynchronous metho
 The code above also specifies the connection name as “AdventureWorks”. The connection name must be the same as the one in the ConfigureServices method of *Startup.cs*:
 
    ```C#
-   //Note: Change "OrderContext" if you have changed the default DataContext file name; change the "AdventureWorks" if you have changed the database connection name in appsettings.json 
    services.AddDataContext<OrderContext>(m => m.UseSqlServer(Configuration, "AdventureWorks"));  
    ```
 
