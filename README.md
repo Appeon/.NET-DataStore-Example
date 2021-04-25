@@ -15,7 +15,7 @@ Note that this demo implements the Web APIs with synchronous methods. Asynchrono
 
 2. Download and open this demo in SnapDevelop. Make sure you’re connected to the Internet so that the NuGet packages required by the project can be restored.
 
-3. In the **Solution Explorer**, open the file *appsettings.json*, and modify the Data Source, Initial Catalog, User ID, and Password in the connection string based on your enviorment. Note that the value of the Initial Catalog must be the same as the name of database (AdventureWorks2012 by default) you restored in the SQL Server.
+3. In the **Solution Explorer**, open the file *appsettings.json*, and modify the Data Source, Initial Catalog, User ID, and Password in the connection string based on your environment. Note that the value of the Initial Catalog must be the same as the name of database (AdventureWorks2012 by default) you restored in the SQL Server.
 
    ```json
    "ConnectionStrings": { "AdventureWorks": "Data Source=127.0.0.1; Initial Catalog=AdventureWorks2012; Integrated Security=False; User ID=sa; Password=123456; Pooling=True; Min Pool Size=0; Max Pool Size=100; ApplicationIntent=ReadWrite" }
