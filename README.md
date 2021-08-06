@@ -5,8 +5,8 @@ Note that this demo implements the Web APIs with synchronous methods. Asynchrono
 
 #### Prerequisites
 
-- SnapDevelop 2019 R3     
-- PowerBuidler 2019 R3    
+- SnapDevelop 2021     
+- PowerBuidler 2021    
 - SQL Server 2019, 2017, or 2016  
 
 #### Setting Up This Demo
